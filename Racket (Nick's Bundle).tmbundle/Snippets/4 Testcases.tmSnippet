@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>; testcases for function $1
+(test (${1:fName} ${2:inputs}) ${6:expected})
+(test (${1:fName} ${3:inputs}) ${7:expected})
+(test (${1:fName} ${4:inputs}) ${8:expected})
+(test (${1:fName} ${5:inputs}) ${9:expected})</string>
+	<key>name</key>
+	<string>4 Testcases</string>
+	<key>scope</key>
+	<string>source.scheme</string>
+	<key>tabTrigger</key>
+	<string>tests</string>
+	<key>uuid</key>
+	<string>2CCB94F9-FFA0-4B53-BD7D-1E1E20E83B01</string>
+</dict>
+</plist>

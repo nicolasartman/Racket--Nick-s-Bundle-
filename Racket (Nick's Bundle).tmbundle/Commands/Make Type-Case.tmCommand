@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/local/bin/ruby
+
+typeName = ENV['TM_CURRENT_WORD']
+
+documentLines = STDIN.read.split("\n")
+
+typesList = Array.new
+fieldsList = Hash.new
+
+# DEBUG
+# typeName = "btree"
+# documentLines = "; btree : leafs contain data and nodes contain leafs or other nodes.
+# ; With these components one can easily construct a binary tree.
+# (define-type btree
+#     [leaf (data symbol?)]
+#     [node (left-child btree?) (right-child btree?)])".split("\n")
+
+
+# Slice off everything before the line we care about
+documentLines = documentLines.drop_while do |line|
+  not line.include?("(define-type " + typeName)
+end
+
+# If the type wasn't defined (aka there's nothing left), abort
+if documentLines.empty?
+  puts typeName + " not defined in current document"
+  Process.exit
+end
+
+while (!documentLines.first.nil?) and !documentLines.first.match(/^\s*$/)
+  # If the line is a type declarationm, add the type to the list
+  if documentLines.first =~ /^\s*\[/
+    # extract the type
+    type = documentLines.first.scan(/^\s*\[(.+?)\s.*$/).first.first
+    typesList &lt;&lt; type
+    # extract the fields
+    fieldsList[type] = documentLines.first.scan(/\((.+?)\s.*?\)\s?/).collect do | result |
+      if result.kind_of?(Array)
+        result = result.first
+      end
+    end
+  end
+
+  documentLines.delete_at 0
+end
+
+# puts typesList.inspect
+# puts fieldsList.inspect
+# 
+# Process.exit
+
+# ==========
+# = Output =
+# ==========
+
+placeholderCounter = 1
+
+puts "(type-case " + typeName + " a" + typeName.capitalize + "\n"
+
+typesList.each do |type|
+  puts "\t[" + type + " (" + fieldsList[type].join(" ") + ") ${" + placeholderCounter.to_s + ":&lt;code&gt;}]"
+  placeholderCounter += 1
+end
+
+puts ")"
+</string>
+	<key>fallbackInput</key>
+	<string>document</string>
+	<key>input</key>
+	<string>document</string>
+	<key>keyEquivalent</key>
+	<string>~c</string>
+	<key>name</key>
+	<string>Make Type-Case</string>
+	<key>output</key>
+	<string>insertAsSnippet</string>
+	<key>scope</key>
+	<string>source.scheme</string>
+	<key>tabTrigger</key>
+	<string>tc</string>
+	<key>uuid</key>
+	<string>1E7DF583-2B20-433E-872D-810A9F2553D9</string>
+</dict>
+</plist>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>(type-case ${1:type} ${2:varname}
+	[${3:typeA} (${4:fields}) $5]
+	[${6:typeB} (${7:fields}) $8]
+)</string>
+	<key>name</key>
+	<string>Type-Case</string>
+	<key>scope</key>
+	<string>source.scheme</string>
+	<key>tabTrigger</key>
+	<string>typec</string>
+	<key>uuid</key>
+	<string>E09C8356-137E-421B-AF9F-D08E1CB2BC4D</string>
+</dict>
+</plist>

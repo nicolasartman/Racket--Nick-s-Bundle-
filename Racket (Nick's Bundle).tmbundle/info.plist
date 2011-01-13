@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Racket (Nick's Bundle)</string>
+	<key>ordering</key>
+	<array>
+		<string>CD76FB16-E5BF-4E10-8B1D-D1CFCCCE0781</string>
+		<string>58ECCAF7-2CFB-4B98-BD13-470437775699</string>
+	</array>
+	<key>uuid</key>
+	<string>1469C2FE-50C4-44DF-839B-B964ADBEE311</string>
+</dict>
+</plist>
